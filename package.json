@@ -31,6 +31,7 @@
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/sequelize": "^8.0.0",
     "@types/continuation-local-storage": "^3.2.4",
+    "@types/cors": "^2.8.12",
     "@types/nodemailer": "^6.4.4",
     "@types/passport-jwt": "^3.0.6",
     "@types/sequelize": "^4.28.13",

@@ -17,6 +17,9 @@ import { SequelizeModule } from '@nestjs/sequelize';
       database: process.env.PSQL_DB,
       autoLoadModels: true,
       models: [],
+      dialectOptions: {
+        ssl: { rejectUnauthorized: false },
+      },
     }),
   ],
   controllers: [],
