@@ -6,7 +6,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: `.env`,
+      envFilePath: `.env.local`,
     }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
@@ -17,9 +17,9 @@ import { SequelizeModule } from '@nestjs/sequelize';
       database: process.env.PSQL_DB,
       autoLoadModels: true,
       models: [],
-      dialectOptions: {
-        ssl: { rejectUnauthorized: false },
-      },
+      // dialectOptions: {
+      //   ssl: { rejectUnauthorized: false },
+      // },
     }),
   ],
   controllers: [],
