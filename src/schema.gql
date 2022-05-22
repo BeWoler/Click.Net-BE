@@ -3,18 +3,16 @@
 # ------------------------------------------------------
 
 type User {
-  """id of the user"""
+  """ID of the user"""
   id: String!
 
-  """email of the user"""
+  """Email of the user"""
   email: String!
-
-  """username of the user"""
-  username: String!
+  password: String!
 }
 
 type Query {
-  user(id: String, email: String, username: String): User
+  user(id: String): User
   users: [User!]
 }
 
@@ -24,5 +22,5 @@ type Mutation {
 
 input CreateUserInput {
   email: String!
-  username: String!
+  password: String!
 }

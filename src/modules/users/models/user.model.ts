@@ -6,14 +6,14 @@ import { Entity, Column, PrimaryGeneratedColumn, Unique } from 'typeorm';
 @Unique(['id'])
 export class User {
   @PrimaryGeneratedColumn('uuid')
-  @Field(() => String, { description: 'id of the user' })
+  @Field(() => String, { description: 'ID of the user' })
   id: string;
 
   @Column({ unique: true })
-  @Field(() => String, { description: 'email of the user' })
+  @Field(() => String, { description: 'Email of the user' })
   email: string;
 
-  @Column({ unique: true })
-  @Field(() => String, { description: 'username of the user' })
-  username: string;
+  @Column()
+  @Field(() => String)
+  password: string;
 }

@@ -10,5 +10,5 @@ export class CreateUserInput {
 
   @Field()
   @IsNotEmpty()
-  username!: string;
+  password!: string;
 }
