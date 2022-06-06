@@ -14,6 +14,6 @@ export class User {
   email: string;
 
   @Column()
-  @Field(() => String)
+  @Field(() => String, { description: 'Password of the user', nullable: true })
   password: string;
 }

@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { GetUserArgs } from './dtos/args/getUser.args';
 import { CreateUserInput } from './dtos/inputs/createUser.input';
 import { User } from './models/user.model';
+import { DeleteUserInput } from './dtos/inputs/deleteUser.input';
 
 @Injectable()
 export class UsersService {
@@ -14,17 +15,27 @@ export class UsersService {
   ) {}
 
   public async getUser(getUserArgs: GetUserArgs): Promise<User> {
-    return this.usersRepository.findOne({
+    const user = await this.usersRepository.findOne({
       where: [{ id: getUserArgs.id }],
     });
+    user.password = null;
+
+    return user;
   }
 
   public async getUserByEmail(email: string): Promise<User> {
-    return this.usersRepository.findOne({ where: { email: email } });
+    const user = await this.usersRepository.findOne({
+      where: { email: email },
+    });
+    user.password = null;
+
+    return user;
   }
 
   public async getUsers(): Promise<User[]> {
-    return this.usersRepository.find();
+    const users = await this.usersRepository.find();
+    users.map((user) => (user.password = null));
+    return users;
   }
 
   public async createUser(createUserData: CreateUserInput): Promise<User> {
@@ -33,5 +44,10 @@ export class UsersService {
     await this.usersRepository.save(user);
 
     return user;
+  }
+
+  public async deleteUser(id: DeleteUserInput): Promise<DeleteResult> {
+    const deletedUser = await this.usersRepository.delete(id);
+    return deletedUser;
   }
 }

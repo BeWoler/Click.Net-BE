@@ -8,7 +8,9 @@ type User {
 
   """Email of the user"""
   email: String!
-  password: String!
+
+  """Password of the user"""
+  password: String
 }
 
 type Query {
@@ -18,9 +20,14 @@ type Query {
 
 type Mutation {
   createUser(createUserData: CreateUserInput!): User!
+  deleteUser(deleteUser: DeleteUserInput!): User!
 }
 
 input CreateUserInput {
   email: String!
   password: String!
+}
+
+input DeleteUserInput {
+  id: String!
 }
