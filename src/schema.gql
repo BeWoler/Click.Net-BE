@@ -3,31 +3,26 @@
 # ------------------------------------------------------
 
 type User {
-  """ID of the user"""
+  """id of the user"""
   id: String!
 
-  """Email of the user"""
+  """email of the user"""
   email: String!
 
-  """Password of the user"""
-  password: String
+  """username of the user"""
+  username: String!
 }
 
 type Query {
-  user(id: String): User
+  user(id: String, email: String, username: String): User
   users: [User!]
 }
 
 type Mutation {
   createUser(createUserData: CreateUserInput!): User!
-  deleteUser(deleteUser: DeleteUserInput!): User!
 }
 
 input CreateUserInput {
   email: String!
-  password: String!
-}
-
-input DeleteUserInput {
-  id: String!
+  username: String!
 }
