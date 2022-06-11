@@ -25,12 +25,10 @@ export class User {
   @Field(() => String, { description: 'Password of the user', nullable: true })
   password: string;
 
-  @Column()
   @Field(() => String, { description: 'User posts' })
   @OneToMany(() => Post, (post) => post)
   posts: Post[];
 
-  @Column()
   @Field(() => String, { description: 'User likes' })
   @OneToMany(() => Like, (like) => like)
   likes: Like[];

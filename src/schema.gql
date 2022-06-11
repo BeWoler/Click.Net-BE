@@ -11,6 +11,12 @@ type User {
 
   """Password of the user"""
   password: String
+
+  """User posts"""
+  posts: String!
+
+  """User likes"""
+  likes: String!
 }
 
 type Query {
