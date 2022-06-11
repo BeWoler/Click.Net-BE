@@ -1,5 +1,13 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Entity, Column, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { Like } from 'src/modules/likes/models/like.model';
+import { Post } from 'src/modules/posts/models/post.model';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  Unique,
+  OneToMany,
+} from 'typeorm';
 
 @ObjectType()
 @Entity()
@@ -16,4 +24,14 @@ export class User {
   @Column()
   @Field(() => String, { description: 'Password of the user', nullable: true })
   password: string;
+
+  @Column()
+  @Field(() => String, { description: 'User posts' })
+  @OneToMany(() => Post, (post) => post)
+  posts: Post[];
+
+  @Column()
+  @Field(() => String, { description: 'User likes' })
+  @OneToMany(() => Like, (like) => like)
+  likes: Like[];
 }
